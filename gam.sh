@@ -15,3 +15,19 @@ gam create user <email address> firstname <First Name>
  [suspended on|off] [changepassword on|off]
  [gal on|off] [sha] [md5] [crypt] [nohash]
  [org <Org Name>] [recoveryemail <email> [recoveryphone <phone>]
+
+
+ # Remove Group and add group members to another group as members
+group_email="grade5"
+staff_email="poplarstaff"
+gam update group $group_email remove member $staff_email
+gam print group-members group $staff_email fields email | gam csv - gam update group $group_email add manager "~email"
+
+
+
+# Remove licenses gam script 
+
+gam print users query "orgUnitPath=/Other" licenses | sed '/Workspace/!d' | sed '/Staff/d' > licensefile.csv
+sed -i '' '1s/^/primaryEmail,license\n/' licensefile.csv
+echo "$(cat licensefile.csv | wc -l) licenses"
+gam csv licensefile.csv gam user "~primaryEmail" delete license 1010310008
