@@ -38,3 +38,8 @@ gam csv licensefile.csv gam user "~primaryEmail" delete license 1010310008
 #  OrgUnit samples 1. Testing/grade3 ,   2. /Student/Middle/buffsci1/Grade5/tasfia  etc... (Org unit must be in quotation mark)
 
 gam update org '<orgUnit>' add users <e-mail>  
+
+
+
+
+keep writing...
