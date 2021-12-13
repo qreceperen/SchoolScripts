@@ -41,3 +41,9 @@ gam update org '<orgUnit>' add users <e-mail>
 gam update user <email> org '<OrgUnit>'
 
 '/Staff/buffsci1'
+gam update org '<orgUnit>' add users <e-mail>  
+
+
+
+
+keep writing...
