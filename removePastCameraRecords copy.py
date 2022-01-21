@@ -13,3 +13,5 @@ for root, subdirs, files in os.walk(file_path):
             fileDirectory = os.path.abspath(os.path.join(root,subdir)) #it finds the original directory path
             print(fileDirectory)
             shutil.rmtree(fileDirectory)
+
+        
