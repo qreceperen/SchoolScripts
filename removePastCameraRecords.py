@@ -11,6 +11,7 @@ for root, subdirs, files in os.walk(file_path):
     for subdir in subdirs:
         if subdir[0:2]=="12" and subdir[6:10]=="2021": # first number is month such as 01,02,03,04 second number is year. The date format in the camera folder is 01.17.2021. You can change month and year number to delete previous month records.
             fileDirectory = os.path.abspath(os.path.join(root,subdir)) #it finds the original directory path
+            print(fileDirectory)
             shutil.rmtree(fileDirectory)
 
         
