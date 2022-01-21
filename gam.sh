@@ -31,3 +31,19 @@ gam print users query "orgUnitPath=/Other" licenses | sed '/Workspace/!d' | sed 
 sed -i '' '1s/^/primaryEmail,license\n/' licensefile.csv
 echo "$(cat licensefile.csv | wc -l) licenses"
 gam csv licensefile.csv gam user "~primaryEmail" delete license 1010310008
+
+
+
+#  gam update org unit
+#  OrgUnit samples 1. Testing/grade3 , 2./Student/Elementary/buffsci1    3. /Student/Middle/buffsci1/Grade5/tasfia  etc... (Org unit must be in quotation mark)
+gam update org '<orgUnit>' add users <e-mail>  
+# or
+gam update user <email> org '<OrgUnit>'
+
+'/Staff/buffsci1'
+gam update org '<orgUnit>' add users <e-mail>  
+
+
+
+
+keep writing...
