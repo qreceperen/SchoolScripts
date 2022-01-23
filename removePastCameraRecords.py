@@ -13,3 +13,6 @@ for root, subdirs, files in os.walk(file_path):
             fileDirectory = os.path.abspath(os.path.join(root,subdir)) #it finds the original directory path
             print(fileDirectory)
             shutil.rmtree(fileDirectory)
+
+# Check the link for answer:
+# https://www.tutorialspoint.com/How-do-you-get-a-directory-listing-sorted-by-creation-date-in-Python#:~:text=To%20get%20a%20directory%20listing,sort%20against%20the%20creation%20time.
