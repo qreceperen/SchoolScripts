@@ -33,7 +33,15 @@ echo "$(cat licensefile.csv | wc -l) licenses"
 gam csv licensefile.csv gam user "~primaryEmail" delete license 1010310008
 
 
+# For SUSPENDED STUDENTS
 
+# 1. Suspent the STUDENTS
+gam update user <e-mail> suspended
+
+# 2. Remove from all groups
+gam user <email address> delete groups
+
+# 3.Change the org unit
 #  gam update org unit
 #  OrgUnit samples 1. Testing/grade3 , 2./Student/Elementary/buffsci1    3. /Student/Middle/buffsci1/Grade5/tasfia  etc... (Org unit must be in quotation mark)
 gam update org '<orgUnit>' add users <e-mail>  
@@ -43,7 +51,11 @@ gam update user <email> org '<OrgUnit>'
 '/Staff/buffsci1'
 gam update org '<orgUnit>' add users <e-mail>  
 
+# Print all org units
+    gam print orgs # you can use grep function to catch specific org units.
 
-
+# 4. Remove all licenses
+# Each license type has specific license number you can see user licenses as follows gam info user <e-mail>.
+gam user <e-mail> delete license <license NUmber>
 
 keep writing...

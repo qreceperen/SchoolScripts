@@ -1,12 +1,31 @@
-import random
-# #Generate 5 random numbers between 10 and 30
-# randomlist = random.sample(range(0, 5), 2)
-# number = str(randomlist[0])+str(randomlist[1])+str(sum(randomlist)) + str(randomlist[1]) + str(randomlist[0])
+#!/usr/bin/env python3
 
-# print(number)
+import os
+import shutil
+import time
 
-number = list(str(random.randint(10000,99999)))
 
-print(number)
+path = "/Users/eren/Desktop/Original"
+days = 5
+seconds = time.time() - (days*24*60*60)
 
-edit = number[0]+number[1]
+def get_file_or_folder_age(path):
+    ctime = os.stat(path).st_ctime
+    return ctime
+
+# for root_folder, folders, files in os.walk(path):
+#     for folder in folders:
+#         folder_path = os.path.join(root_folder,folder)
+#         print(f'Folder path {folder_path} and time is {get_file_or_folder_age(folder_path)}')
+
+#         if seconds >= get_file_or_folder_age(folder_path):
+#         print(folder_path)
+
+
+for root_folder, folders, files in os.walk(path):
+    for folder in folders:
+        folder_path = os.path.join(root_folder,folder)
+        if seconds >= get_file_or_folder_age(folder_path):
+            print(folder_path)
+
+
