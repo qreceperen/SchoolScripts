@@ -36,7 +36,7 @@ gam csv licensefile.csv gam user "~primaryEmail" delete license 1010310008
 # For SUSPENDED STUDENTS
 
 # 1. Suspent the STUDENTS
-gam update user <e-mail> suspended
+gam update user <e-mail> suspended (on or off)
 
 # 2. Remove from all groups
 gam user <email address> delete groups
