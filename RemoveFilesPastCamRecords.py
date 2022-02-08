@@ -33,7 +33,7 @@ def main():
     # path = r'''C:\Users\recep\Desktop\1''' # Write main directory of camera records. (For Windows)
 
     # How old folder will be deleted
-    days = 0.0001
+    days = 30
 
     # Converting the days to seconds. time.time() returns current time in second. 
     # Calculate current time and substract from 30 days(in second time). It checks current time is bigger than 30 days or not
