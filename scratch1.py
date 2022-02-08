@@ -1,12 +1,7 @@
-import random
-# #Generate 5 random numbers between 10 and 30
-# randomlist = random.sample(range(0, 5), 2)
-# number = str(randomlist[0])+str(randomlist[1])+str(sum(randomlist)) + str(randomlist[1]) + str(randomlist[0])
+#!/usr/bin/env python3
 
-# print(number)
+yearValue = [2021,2022]
+name = '10.11.2021'
 
-number = list(str(random.randint(10000,99999)))
-
-print(number)
-
-edit = number[0]+number[1]
+if yearValue in name:
+    print(name)
