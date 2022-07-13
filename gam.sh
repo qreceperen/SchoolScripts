@@ -25,8 +25,8 @@ gam print group-members group $staff_email fields email | gam csv - gam update g
 
 
 
-# Remove licenses gam script 
 
+# Remove licenses gam script 
 gam print users query "orgUnitPath=/Other" licenses | sed '/Workspace/!d' | sed '/Staff/d' > licensefile.csv
 sed -i '' '1s/^/primaryEmail,license\n/' licensefile.csv
 echo "$(cat licensefile.csv | wc -l) licenses"
@@ -58,4 +58,33 @@ gam update org '<orgUnit>' add users <e-mail>
 # Each license type has specific license number you can see user licenses as follows gam info user <e-mail>.
 gam user <e-mail> delete license <license NUmber>
 
-keep writing...
+
+
+
+# Disable Chrome Book Devices 
+gam update cros cros_sn <serial Number > action disable
+
+
+# Bulk Operations
+
+#1 "~primaryEmail is csv column title, be sure you are on the .csv file screen on table."
+gam csv gamBulkTest.csv gam update user "~primaryEmail" email "~emails
+gam csv gamBulkTest.csv gam update group "~primaryEmail" email "~emails
+
+# Buffsci1 Suspended students org = "/Other/buffsci1/SuspendedStudents"
+# suspend user, change org to Suspended, remove from groups 
+gam csv BulkOperations.csv gam update user "~primaryEmail" suspended on
+gam csv BulkOperations.csv gam update user "~primaryEmail" org "~org" 
+gam user <email> delete groups
+
+
+# GAM Update Groups
+gam update group <groupname> add member user <user email>
+# Update from csv file
+gam csv abc.csv gam update group "~group" add member user "~email"
+# Remove member from each group.
+gam user <email> delete groups
+
+
+
+# keep writing...
