@@ -1,0 +1,3 @@
+group,id,email,role,type,status
+testgroup1@buffsci.org,113693612911474916680,test@buffsci.org,MEMBER,USER,ACTIVE
+testgroup1@buffsci.org,102103022354358101800,testing@buffsci.org,MEMBER,USER,ACTIVE

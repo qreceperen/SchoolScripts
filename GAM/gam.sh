@@ -26,21 +26,24 @@ gam print group-members group $staff_email fields email | gam csv - gam update g
 
 
 
-# Remove licenses gam script 
-gam print users query "orgUnitPath=/Other" licenses | sed '/Workspace/!d' | sed '/Staff/d' > licensefile.csv
-sed -i '' '1s/^/primaryEmail,license\n/' licensefile.csv
-echo "$(cat licensefile.csv | wc -l) licenses"
-gam csv licensefile.csv gam user "~primaryEmail" delete license 1010310008
+# carry all members from one group to another and delete from previous group.
+
+groupMemberList="groupMemberList.csv"
+newGroupName="testgroup1"
+oldGroupName="testgroup2"
+gam print group-members group_ns $oldGroupName > $groupMemberList
+sleep 5
+gam csv $groupMemberList gam update group $newGroupName add member user "~email"
+gam update group $oldGroupName clear 
+
+
 
 
 # For SUSPENDED STUDENTS
-
 # 1. Suspent the STUDENTS
 gam update user <e-mail> suspended (on or off)
-
 # 2. Remove from all groups
 gam user <email address> delete groups
-
 # 3.Change the org unit
 #  gam update org unit
 #  OrgUnit samples 1. Testing/grade3 , 2./Student/Elementary/buffsci1    3. /Student/Middle/buffsci1/Grade5/tasfia  etc... (Org unit must be in quotation mark)
@@ -84,6 +87,8 @@ gam update group <groupname> add member user <user email>
 gam csv abc.csv gam update group "~group" add member user "~email"
 # Remove member from each group.
 gam user <email> delete groups
+#remove all members from a group
+gam update group <group Email> clear 
 
 
 
