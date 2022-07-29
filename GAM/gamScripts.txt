@@ -104,49 +104,6 @@ gam print users fields firstname,lastname,email > users.csv
 gam csv newEmail.csv gam update group "~group" add member user "~email"
 
 
-# -ORG UNIT-
 # Create Org Unit
 
  gam csv TestGam.csv gam create org "~orgName" parent "~RootOrg"
-
- gam update org '<orgUnit>' add users <e-mail>  
-
-
-
-
- #  # EXCELL FORMULAS 
-
-# STEP 1
-
-# Take last Name and Create email - EXCEL FORMULA
-=LOWER(G2&"@rocsci.org")
-
-# Take first letter of first name and full lastname -Excel FORMULA 
-=LOWER(LEFT(F2,1)&G2&"@rocsci.org")
-
-# Create Password first four letter from lastname and random 4 digit - EXCEL FORMULA
-=LOWER(LEFT(G2,4))&RANDBETWEEN(1000,9999)
-
-Add all unique email to GSuite with gam
-
-# Sample GAM for STEP1:
-gam csv abc.csv gam create user "~email" firstname "~FirstName" lastname "~LastName" password "~password" changepassword off
-
-# # STEP 2
-# Create Org Units 
-
-# sample org = /Student/Elementary/rocsci/Gradek
-
- gam csv abc.csv gam create org "~orgUnit" parent "~parentOrg"
-
-
-#  # STEP 3
-# Add all users to newly created org Unit 
-
-gam csv abc.csv gam update org "~addOrg" add users "~email"  
-
-
-
-
-
-
