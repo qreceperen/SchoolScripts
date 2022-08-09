@@ -1,3 +1,7 @@
+# Remove licenses gam script 
+gam print users query "orgUnitPath=/Other" licenses | sed '/Workspace/!d' | sed '/Staff/d' > licensefile.csv
+sed -i '' '1s/^/primaryEmail,license\n/' licensefile.csv
+echo "$(cat licensefile.csv | wc -l) licenses"
 
 
 # Reset user password from csv file (/Users/eren/Desktop/passwords.csv is csv file location)
@@ -130,10 +134,11 @@ gam csv newEmail.csv gam update group "~group" add member user "~email"
 Add all unique email to GSuite with gam
 
 # Sample GAM for STEP1:
-gam csv abc.csv gam create user "~email" firstname "~FirstName" lastname "~LastName" password "~password" changepassword off
+gam csv abc.csv gam create user "~email" firstname "~FirstName" lastname "~LastName" password "~password" changepassword off #Students
+gam csv abc.csv gam create user "~email" firstname "~FirstName" lastname "~LastName" password changeme changepassword on  # Staff
 
-# # STEP 2
-# Create Org Units 
+# # STEP 2 !!! ADD ORG UNIT AFTER CREATING USERS
+# Create Org Units (Students). Add to org unit (Staff)
 
 # sample org = /Student/Elementary/rocsci/Gradek
 
