@@ -4,6 +4,9 @@ sed -i '' '1s/^/primaryEmail,license\n/' licensefile.csv
 echo "$(cat licensefile.csv | wc -l) licenses"
 
 
+
+
+
 # Reset user password from csv file (/Users/eren/Desktop/passwords.csv is csv file location)
 '''Open terminal or equal, write bash , write Source ~/.profile to activate gam (might not be necessary)'''
 gam csv /Users/eren/Desktop/passwords.csv gam update user ~email password ~Pass
@@ -28,6 +31,8 @@ group_email="grade5"
 staff_email="poplarstaff"
 gam update group $group_email remove member $staff_email
 gam print group-members group $staff_email fields email | gam csv - gam update group $group_email add manager "~email"
+
+gam update group "~group2" add member "~email"
 
 
 
@@ -60,12 +65,13 @@ gam update user <email> org '<OrgUnit>'
 '/Staff/buffsci1'
 gam update org '<orgUnit>' add users <e-mail>  
 
+
+# PRINT 
 # Print all org units
     gam print orgs # you can use grep function to catch specific org units.
+# Print users according to OrgUnit
+gam print users firstname lastname query "orgUnitPath=/Staff" > Users.csv
 
-# 4. Remove all licenses
-# Each license type has specific license number you can see user licenses as follows gam info user <e-mail>.
-gam user <e-mail> delete license <license NUmber>
 
 
 
@@ -95,6 +101,9 @@ gam csv abc.csv gam update group "~group" add member user "~email"
 gam user <email> delete groups
 #remove all members from a group
 gam update group <group Email> clear 
+
+
+gam update group "~group1" add member user "~email" | gam update group "~group2" add member user "~email"
 
 
 
@@ -137,21 +146,43 @@ Add all unique email to GSuite with gam
 gam csv abc.csv gam create user "~email" firstname "~FirstName" lastname "~LastName" password "~password" changepassword off #Students
 gam csv abc.csv gam create user "~email" firstname "~FirstName" lastname "~LastName" password changeme changepassword on  # Staff
 
+
+
 # # STEP 2 !!! ADD ORG UNIT AFTER CREATING USERS
 # Create Org Units (Students). Add to org unit (Staff)
 
 # sample org = /Student/Elementary/rocsci/Gradek
 
  gam csv abc.csv gam create org "~orgUnit" parent "~parentOrg"
+ 
 
 
 #  # STEP 3
 # Add all users to newly created org Unit 
 
 gam csv abc.csv gam update org "~addOrg" add users "~email"  
+gam csv NewStudentds.csv gam update org "~addOrg" add users "~email"  
+
+
+
+
+
+# SUSPEND
+# gam suspend and change org unit of student.
+
+gam update user "~email" | gam gam update org '~/Other/buffsci1/DeactivatedSuspendedUsers' add users "~email" 
+
+# SAMPLE: 
+gam update user bialkowski suspended on | gam update org '/Other/buffsci1/DeactivatedSuspendedUsers' add users bialkowski 
 
 
 
 
 
 
+NOTES LAST STUDENTS ADDED
+Clare: 2	2022-23	Harley 	Sofia	Baker
+Poplar: K	2022-23	Mahbeer		Rahaman
+Doat: 6	2022-23	Theopolis "Theo"	Ira	Huguley IV
+Franklin: 9	2022-23	Carmine	Nicholas	Doty
+Franklin2:  10	2022-23	Nowshin	Zarita	Tabassum
