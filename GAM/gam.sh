@@ -103,19 +103,12 @@ gam user <email> delete groups
 gam update group <group Email> clear 
 
 
-gam update group "~group1" add member user "~email" | gam update group "~group2" add member user "~email"
-
-
+gam csv NewStaff.csv gam update group "~group1" add member user "~email" | gam csv NewStaff.csv gam update group "~group2" add member user "~email"
 
 # keep writing...
-
-
 # Download all users 
 gam print users fields firstname,lastname,email > users.csv
-
-
 gam csv newEmail.csv gam update group "~group" add member user "~email"
-
 
 # -ORG UNIT-
 # Create Org Unit
@@ -161,7 +154,7 @@ gam csv abc.csv gam create user "~email" firstname "~FirstName" lastname "~LastN
 # Add all users to newly created org Unit 
 
 gam csv abc.csv gam update org "~addOrg" add users "~email"  
-gam csv NewStudentds.csv gam update org "~addOrg" add users "~email"  
+ 
 
 
 
@@ -170,10 +163,10 @@ gam csv NewStudentds.csv gam update org "~addOrg" add users "~email"
 # SUSPEND
 # gam suspend and change org unit of student.
 
-gam update user "~email" | gam gam update org '~/Other/buffsci1/DeactivatedSuspendedUsers' add users "~email" 
+gam update user "~email" | gam gam update org '~/Other/buffsci1/DeactivatedSuspendedUsers' add users "~email" | gam user "kdelgado" delete groups
 
 # SAMPLE: 
-gam update user bialkowski suspended on | gam update org '/Other/buffsci1/DeactivatedSuspendedUsers' add users bialkowski 
+gam update user kdelgado suspended on | gam update org '/Other/buffsci1/DeactivatedSuspendedUsers' add users kdelgado | gam user kdelgado delete groups
 
 
 
