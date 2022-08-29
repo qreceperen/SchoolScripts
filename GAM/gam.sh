@@ -71,6 +71,12 @@ gam update org '<orgUnit>' add users <e-mail>
     gam print orgs # you can use grep function to catch specific org units.
 # Print users according to OrgUnit
 gam print users firstname lastname query "orgUnitPath=/Staff" > Users.csv
+gam print users firstname lastname query "orgUnitPath=/Student" > allstudents.csv
+# Print group members according to roles( if you do not want you can erase roles)
+
+gam print group-members group <Group Email Address> roles owners,managers
+gam print group-members group clarestaff@buffsci.org > group1.csv
+gam print group-members group rocsciallstaff@rocsci.org >> group1.csv
 
 
 
@@ -163,12 +169,10 @@ gam csv abc.csv gam update org "~addOrg" add users "~email"
 # SUSPEND
 # gam suspend and change org unit of student.
 
-gam update user "~email" | gam gam update org '~/Other/buffsci1/DeactivatedSuspendedUsers' add users "~email" | gam user "kdelgado" delete groups
+gam update user "~email" | gam update org '~/Other/buffsci1/DeactivatedSuspendedUsers' add users "~email" | gam user "kdelgado" delete groups
 
 # SAMPLE: 
 gam update user kdelgado suspended on | gam update org '/Other/buffsci1/DeactivatedSuspendedUsers' add users kdelgado | gam user kdelgado delete groups
-
-
 
 
 
