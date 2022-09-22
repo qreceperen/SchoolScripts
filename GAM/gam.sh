@@ -2,7 +2,7 @@
 gam print users query "orgUnitPath=/Other" licenses | sed '/Workspace/!d' | sed '/Staff/d' > licensefile.csv
 sed -i '' '1s/^/primaryEmail,license\n/' licensefile.csv
 echo "$(cat licensefile.csv | wc -l) licenses"
-
+gam csv licensefile.csv gam user "~primaryEmail" delete license 1010310008
 
 
 
@@ -160,26 +160,79 @@ gam csv abc.csv gam create user "~email" firstname "~FirstName" lastname "~LastN
 # Add all users to newly created org Unit 
 
 gam csv abc.csv gam update org "~addOrg" add users "~email"  
+
+gam csv rocsciusers.csv gam update org "~addOrg" add users "~email"  
  
-
-
-
-
 
 # SUSPEND
 # gam suspend and change org unit of student.
+#Student
+gam update user "~email" suspended on | gam update org '/Other/buffsci1/SuspendedStudents' add users "~email" | gam user "kdelgado" delete groups
+sleep 5s
+gam delete org '/Student/Elementary/rocsci/Gradek/STUDENTEMAILID'
 
-gam update user "~email" | gam update org '~/Other/buffsci1/DeactivatedSuspendedUsers' add users "~email" | gam user "kdelgado" delete groups
-
+gam update user "~email" suspended on | gam update org '/Other/rocsci/SuspendedStudents' add users "~email" | gam user "kdelgado" delete groups | gam delete org '/Student/Elementary/rocsci/Gradek/STUDENTEMAILID'
+#staff
+gam update user "~email" suspended on | gam update org '/Other/FormerEmployeesSuspended' add users "~email" | gam user "kdelgado" delete groups
 # SAMPLE: 
-gam update user kdelgado suspended on | gam update org '/Other/buffsci1/DeactivatedSuspendedUsers' add users kdelgado | gam user kdelgado delete groups
+gam update user kdelgado suspended on | gam update org '/Other/FormerEmployeesSuspended' add users kdelgado | gam user kdelgado delete groups
+
+
+
+
 
 
 
 
 NOTES LAST STUDENTS ADDED
-Clare: 2	2022-23	Harley 	Sofia	Baker
-Poplar: K	2022-23	Mahbeer		Rahaman
-Doat: 6	2022-23	Theopolis "Theo"	Ira	Huguley IV
+Clare: k   Abdul Wahid 
+Doat: K	2022-23	Mahbeer		Rahaman
+Poplar: 6	2022-23	Theopolis "Theo"	Ira	Huguley IV
 Franklin: 9	2022-23	Carmine	Nicholas	Doty
 Franklin2:  10	2022-23	Nowshin	Zarita	Tabassum
+
+
+gam print users firstname,lastname,email query "orgUnitPath=/Student/Elementary/rocsci" > allrocsci.csv
+
+gam csv allrocsci.csv gam update user "~email" password "~password" changepassword off
+
+
+
+gam update user esmith suspended on | gam update org '/Other/buffsci1/SuspendedStudents' add users esmith | gam user esmith delete groups
+sleep 5s
+gam delete org '/Student/Middle/buffsci1/Grade5/mwrightcroxie'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
